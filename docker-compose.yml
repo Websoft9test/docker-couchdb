@@ -1,26 +1,27 @@
 # add this file
-# default CouchDB root password is 123456
-# default version: lastest
-# if you want to change mysql version: 1. change file: ./.env 2. add parameter: docker run -e MYSQL_VERSION=${your_version}.
 
 version: '3.8'
 
 services:
 
-  CouchDB:
-    image: couchdb:${COUCHDB_VERSION}
-    container_name: CouchDB-${COUCHDB_VERSION}
+  couchdb:
+    image: couchdb:${DB_COUCHDB_VERSION}
+    container_name: ${APP_CONTAINER_NAME}
     restart: always
     ports:
-     - 5984:5984
+     - ${DB_COUCHDB_PORT}:5984
     volumes:
-     - ./volumes/couchdb_data:/opt/couchdb/data
-     - ./volumes/couchdb_etc:/opt/couchdb/etc/local.d
-    # - ./volumes/vm.args:/opt/couchdb/etc/vm.args #Changing these values is less common,to store Erlang runtime-specific changes
+     - couchdb_data:/opt/couchdb/data
+     - couchdb_etc:/opt/couchdb/etc/local.d
+    # - couchdb/vm.args:/opt/couchdb/etc/vm.args #Changing these values is less common,to store Erlang runtime-specific changes
     environment:
-      COUCHDB_USER: admin
-      COUCHDB_PASSWORD: 123456
+      COUCHDB_USER: ${DB_COUCHDB_USER}
+      COUCHDB_PASSWORD: ${DB_COUCHDB_PASSWORD}
 
 networks:
   default:
-      name: "apps"
+      name: ${APP_NETWORK}
+
+volumes:
+  couchdb_data:
+  couchdb_etc:
