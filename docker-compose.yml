@@ -13,7 +13,6 @@ services:
     volumes:
      - couchdb_data:/opt/couchdb/data
      - couchdb_etc:/opt/couchdb/etc/local.d
-    # - couchdb/vm.args:/opt/couchdb/etc/vm.args #Changing these values is less common,to store Erlang runtime-specific changes
     environment:
       COUCHDB_USER: ${DB_COUCHDB_USER}
       COUCHDB_PASSWORD: ${DB_COUCHDB_PASSWORD}
