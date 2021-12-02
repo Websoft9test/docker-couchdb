@@ -1,4 +1,6 @@
-# add this file
+# docs: https://docs.couchdb.org/en/latest/install/docker.html
+# source: https://github.com/apache/couchdb-docker
+# image: https://hub.docker.com/_/couchdb
 
 version: '3.8'
 
