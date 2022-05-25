@@ -7,21 +7,21 @@ version: '3.8'
 services:
 
   couchdb:
-    image: couchdb:${DB_COUCHDB_VERSION}
-    container_name: ${APP_CONTAINER_NAME}
+    image: couchdb:${APP_VERSION}
+    container_name: ${APP_NAME}
     restart: always
     ports:
-     - ${DB_COUCHDB_PORT}:5984
+     - ${APP_PORT}:5984
     volumes:
      - couchdb_data:/opt/couchdb/data
      - couchdb_etc:/opt/couchdb/etc/local.d
     environment:
-      COUCHDB_USER: ${DB_COUCHDB_USER}
-      COUCHDB_PASSWORD: ${DB_COUCHDB_PASSWORD}
+      COUCHDB_USER: ${APP_USER}
+      COUCHDB_PASSWORD: ${APP_PASSWORD}
 
 networks:
   default:
-      name: ${APP_NETWORK}
+      name: ${APP_NAME}
 
 volumes:
   couchdb_data:
