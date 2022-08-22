@@ -14,7 +14,8 @@ services:
      - ${APP_PORT}:5984
     volumes:
      - couchdb_data:/opt/couchdb/data
-     - couchdb_etc:/opt/couchdb/etc/local.d
+     - couchdb_config:/opt/couchdb/etc/local.d
+     - couchdb_log:/opt/couchdb/var/log
     environment:
       COUCHDB_USER: ${APP_USER}
       COUCHDB_PASSWORD: ${APP_PASSWORD}
@@ -26,4 +27,5 @@ networks:
 
 volumes:
   couchdb_data:
-  couchdb_etc:
+  couchdb_config:
+  couchdb_log:
